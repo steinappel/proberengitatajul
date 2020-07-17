@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>oefening1</title>
+</head>
+<body>
+	<input type=text id="naam" >
+	<input type="button" value="5" onclick="cijfer(5)">
+	<input type="button" value="6" onclick="cijfer(6)">
+	<input type="button" value="7" onclick="cijfer(7)">
+	<input type="button" value="8" onclick="cijfer(8)">
+
+	<br>
+	<br>
+
+	<div id=uitkomst>
+		uitkomst
+		
+	</div>
+
+
+</body>
+<script>
+	function cijfer(getal){
+		if (getal == 5){
+			document.getElementById("uitkomst").style.backgroundColor ="red";}
+		else if(getal == 6){
+			document.getElementById("uitkomst").style.backgroundColor ="yellow";}
+		else{
+			document.getElementById("uitkomst").style.backgroundColor ="green";}
+		
+		document.getElementById("uitkomst").innerHTML = document.getElementById("naam").value +" heeft een " + getal + " gehaald";
+	}
+</script>
+</html>

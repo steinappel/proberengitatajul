@@ -1,0 +1,12 @@
+table{
+	width:700px;
+	height:600px;
+}
+tr{
+	width:700px;
+	height:100px;
+}
+
+td:hover{
+	background-color:blue;
+}

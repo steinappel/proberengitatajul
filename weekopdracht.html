@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+	<title>4 op een rij</title>
+</head>
+<body>
+	<table>
+		<div><button onclick="init()"></div>
+		<colgroup>
+    		<col style="background-color:white">
+    		<col style="background-color:grey">
+    		<col style="background-color:white">
+    		<col style="background-color:grey">
+    		<col style="background-color:white">
+    		<col style="background-color:grey">
+    		<col style="background-color:white">
+  		</colgroup>
+		<tr id="row1">
+			<td id="col1" onclick="myFunction(1)">11</td>
+			<td id="col2" onclick="myFunction(2)">12</td>
+			<td id="col3" onclick="myFunction(3)">13</td>
+			<td id="col4" onclick="myFunction(4)">14</td>
+			<td id="col5" onclick="myFunction(5)">15</td>
+			<td id="col6" onclick="myFunction(6)">16</td>
+			<td id="col7" onclick="myFunction(7)">17</td>
+		</tr>
+		<tr id="row2">
+			<td id="col1">21</td>
+			<td id="col2" onclick="myFunction()">22</td>
+			<td id="col3">23</td>
+			<td id="col4">24</td>
+			<td id="col5">25</td>
+			<td id="col6">26</td>
+			<td id="col7">27</td>
+		</tr>
+		<tr id="row3">
+			<td class="column" id="grid31">31</td>
+			<td id="col2" onclick="myFunction()">32</td>
+			<td id="grid33">33</td>
+			<td id="grid34">34</td>
+			<td id="grid35">35</td>
+			<td id="grid36">36</td>
+			<td id="grid37">37</td>
+		</tr>
+		<tr id="row4">
+			<td id="grid41">41</td>
+			<td id="grid42">42</td>
+			<td id="grid43">43</td>
+			<td id="grid44">44</td>
+			<td id="grid45">45</td>
+			<td id="grid46">46</td>
+			<td id="grid47">47</td>
+		</tr>
+		<tr id="row5">
+			<td class="column" id="grid51">51</td>
+			<td id="grid52">52</td>
+			<td id="grid53">53</td>
+			<td id="grid54">54</td>
+			<td id="grid55">55</td>
+			<td id="grid56">56</td>
+			<td id="grid57">57</td>
+		</tr>
+		<tr id="row6">
+			<td id="col1">61</td>
+			<td id="cop2">62</td>
+			<td id="col3">63</td>
+			<td id="col4">64</td>
+			<td id="col5">65</td>
+			<td id="col6">66</td>
+			<td id="col7">67</td>
+		</tr>
+	</table>
+
+</body>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("row6");
+    var y = document.getElementById("col2");
+    x.style.backgroundColor = "green";
+}
+</script>
+</html>
