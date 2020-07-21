@@ -1,12 +1,16 @@
 table{
 	width:700px;
 	height:600px;
+	background-color:darkblue;
+	margin:5%;
+
 }
 tr{
 	width:700px;
 	height:100px;
 }
 
-td:hover{
-	background-color:blue;
+td{
+	border-radius:50px;
+	background-color:white;
 }

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+	<script>
+		var counter_col = [	0,0,0,0,0,0,0];
+		var veld = [[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0]];
+
+		var kleur = 0 ;
+
+		function latenvallen(kolom){
+			rij = counter_col[kolom]
+			if (rij < 6){
+				var color;
+				if(kleur == 0){
+					color = 'red';
+					kleur = 1 ;
+					veld[rij][kolom] = 1;
+					console.log(veld);
+				}
+				else{
+					color ='green';
+					kleur = 0 ;
+					veld[rij][kolom] = 2;
+					console.log(veld);
+
+				}
+
+				document.getElementById("vakje"+kolom+""+rij).style.backgroundColor=color;
+				counter_col[kolom]++;
+				win(kolom,rij)
+				toonspeler()
+			}
+			else{
+				alert("Kolom is vol");
+			}
+		}
+
+		function toonspeler(){
+			speler = kleur
+			if(speler == 0){
+				document.getElementById("beurt").innerHTML="Beurt is aan: <font color='red'>Speler 1</font>"
+			}
+			else{
+				document.getElementById("beurt").innerHTML="Beurt is aan: <font color='green'>Speler 2</font>"
+			}
+		}
+
+
+
+
+		function win(kolom,rij){
+			var aantal = 0
+			if(kleur == 1){
+				for (i = 0; i < 7; i++){
+					if (veld[rij][i] == 1){
+						aantal++;
+						if(aantal == 4){
+							alert("horizontaal rood");
+
+						}
+					}
+					else{
+						aantal = 0
+					}
+				}
+			}
+			else{
+				for(i = 0 ; i < 7; i++){
+					if (veld[rij][i] == 2){
+						aantal++;
+						if(aantal == 4){
+							alert("horizontaal groen");
+						}
+					}
+					else{
+						aantal = 0
+					}
+				}
+
+			}
+			if (rij>2){
+				console.log(rij)
+				console.log("kleur"+ kleur)
+				if(kleur == 1){
+					for (i=0 ; i < 6 ; i++){
+						if (veld[i][kolom] == 1){
+							aantal++;
+							if(aantal==4){
+								alert("verticaal rood");
+							}
+						}
+						else{
+							aantal=0
+						}
+					}
+				}
+				else{
+					for (i=0; i < 6; i++){
+						if (veld[i][kolom] == 2){
+							aantal++;
+							if(aantal==4){
+								alert("verticaal groen");
+							}
+						}
+						else{
+							aantal=0
+						}
+					}
+
+				}
+			}
+			aantal = 0 			//diagonale controle van links naar rechts aflopend
+			var marijkol = (7+6)-5
+			var beginkolom = kolom + rij
+			if ((kolom+rij) >= 3 && (kolom + rij) <= marijkol){
+				if (beginkolom <= 6){
+					if (kleur == 1){
+						for (i=0; i < 6 && beginkolom-i >=0 ; i++){
+							if(veld[i][beginkolom-i]==1){
+								aantal++
+								if (aantal == 4){
+									alert("diagonaal rood links rechts aflopend");
+								}
+							}
+							else{ aantal = 0
+							}
+						}
+					}
+					else{
+						for (i=0; i<6 && beginkolom-i >=0; i++){
+							if (veld[i][beginkolom-i]== 2){
+								aantal++
+								if(aantal == 4){
+									alert("diagonaal groen links rechts aflopend");
+								}
+							}
+							else{ aantal=0
+
+							}
+						}
+					}
+				}
+				else{
+					var beginrij = beginkolom - 6
+					beginkolom = 6
+					if(kleur == 1){
+						for(i = beginrij ; i < 6 && (beginkolom-i)+beginrij >= 0 ; i++){
+							if (veld[i][(beginkolom-i)+beginrij] == 1){
+								aantal++
+								if (aantal==4){
+									alert("diagonaal rood");
+								}
+							}
+							else{
+								aantal=0
+							}
+						}
+					}
+					else{
+						for(i=beginrij ; i<6 && beginkolom-i >=0; i++){
+							if(veld[i][beginkolom-i + beginrij]==2){
+								aantal++
+								if(aantal==4){
+									alert('diagonaal groen');
+								}
+							}
+							else{
+								aantal = 0
+							}
+						}
+					}
+				}
+			}
+			aantal = 0
+			if(kolom == 0 && rij > 2){
+			}
+			else if(kolom == 1 && rij > 3){
+			}
+			else if(kolom == 2 && rij > 4){	
+			}
+			else if(kolom == 6 && rij < 3){	
+			}
+			else if(kolom == 5 && rij < 2){
+			}
+			else if(kolom == 4 && rij < 1){
+			}
+			else{
+				if(rij<=kolom){
+					beginkolom=kolom-rij
+					if(kleur == 1){
+						for(i=0; i<6 && beginkolom+i < 7; i++){
+							if(veld[i][beginkolom+i] == 1){
+								aantal++
+								if(aantal==4){
+									alert("diagonaal rood links rechts oplopend ");
+								}
+							}
+							else{
+								aantal=0
+							}
+						}
+					}
+					else{
+						for(i=0 ; i<6 && beginkolom +i < 7; i++){
+							if(veld[i][beginkolom+i] == 2){
+								aantal++
+								if(aantal==4){
+									alert("diagonaal groen links rechts oplopend");
+								}
+							}
+							else{
+								aantal = 0
+							}
+						}
+					}		
+				}
+				else{
+					var beginrij = rij - kolom
+					beginkolom = 0
+					if(kleur == 1){
+						for( i=0; i+beginrij < 6 && i+1 < 7; i++){
+							if(veld[beginrij+i][i]==1){
+								aantal++
+								if (aantal == 4 ){
+									alert("diagonaal rood links rechts oplopend");
+								}
+							}
+							else{
+								aantal = 0
+							}
+						}
+					}
+					else{
+						for(i=0; i+beginrij < 6 && i+1 < 7 ; i++){
+							if(veld[beginrij+i][i] == 2){
+								aantal++
+								if (aantal==4){
+									alert("diagonaal groen links rechts oplopend")
+								}
+							}
+							else{
+								aantal = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		
+			
+	</script>
+</head>
+<body>
+	<div id="beurt">Beurt is aan: <font color='red'>Speler 1</font></div>
+	
+	<table border=1>
+		<tr>
+			<td id=vakje05 onclick="latenvallen(0)"></td>
+			<td id=vakje15 onclick="latenvallen(1)"></td>
+			<td id=vakje25 onclick="latenvallen(2)"></td>
+			<td id=vakje35 onclick="latenvallen(3)"></td>
+			<td id=vakje45 onclick="latenvallen(4)"></td>
+			<td id=vakje55 onclick="latenvallen(5)"></td>
+			<td id=vakje65 onclick="latenvallen(6)"></td>
+		</tr>
+
+		<tr>
+			<td id=vakje04 onclick="latenvallen(0)"></td>
+			<td id=vakje14 onclick="latenvallen(1)"></td>
+			<td id=vakje24 onclick="latenvallen(2)"></td>
+			<td id=vakje34 onclick="latenvallen(3)"></td>
+			<td id=vakje44 onclick="latenvallen(4)"></td>
+			<td id=vakje54 onclick="latenvallen(5)"></td>
+			<td id=vakje64 onclick="latenvallen(6)"></td>
+		</tr>
+
+		<tr>
+			<td id=vakje03 onclick="latenvallen(0)"></td>
+			<td id=vakje13 onclick="latenvallen(1)"></td>
+			<td id=vakje23 onclick="latenvallen(2)"></td>
+			<td id=vakje33 onclick="latenvallen(3)"></td>
+			<td id=vakje43 onclick="latenvallen(4)"></td>
+			<td id=vakje53 onclick="latenvallen(5)"></td>
+			<td id=vakje63 onclick="latenvallen(6)"></td>
+		</tr>
+
+		<tr>
+			<td id=vakje02 onclick="latenvallen(0)"></td>
+			<td id=vakje12 onclick="latenvallen(1)"></td>
+			<td id=vakje22 onclick="latenvallen(2)"></td>
+			<td id=vakje32 onclick="latenvallen(3)"></td>
+			<td id=vakje42 onclick="latenvallen(4)"></td>
+			<td id=vakje52 onclick="latenvallen(5)"></td>
+			<td id=vakje62 onclick="latenvallen(6)"></td>
+		</tr>
+
+		<tr>
+			<td id=vakje01 onclick = "latenvallen(0)"></td>
+			<td id=vakje11 onclick = "latenvallen(1)"></td>
+			<td id=vakje21 onclick = "latenvallen(2)"></td>
+			<td id=vakje31 onclick = "latenvallen(3)"></td>
+			<td id=vakje41 onclick = "latenvallen(4)"></td>
+			<td id=vakje51 onclick = "latenvallen(5)"></td>
+			<td id=vakje61 onclick = "latenvallen(6)"></td>
+		</tr>
+
+		<tr>
+			<td id=vakje00 onclick="latenvallen(0)"></td>
+			<td id=vakje10 onclick="latenvallen(1)"></td>
+			<td id=vakje20 onclick="latenvallen(2)"></td>
+			<td id=vakje30 onclick="latenvallen(3)"></td>
+			<td id=vakje40 onclick="latenvallen(4)"></td>
+			<td id=vakje50 onclick="latenvallen(5)"></td>
+			<td id=vakje60 onclick="latenvallen(6)"></td>
+		</tr>
+		
+
+</body>
+</html>
+
